@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ucapan Interaktif</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            overflow: hidden; /* Mencegah scroll jika gambar besar */
+        }
+        #message-container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer; /* Menandakan elemen bisa diklik */
+            transition: transform 0.2s ease-in-out;
+        }
+        #message-container:hover {
+            transform: translateY(-5px);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        #middle-finger-image {
+            display: none; /* Sembunyikan gambar secara default */
+            max-width: 300px; /* Batasi ukuran gambar */
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        /* Style untuk gambar jari tengah */
+        .show-image {
+            display: block !important; /* Tampilkan gambar ketika kelas ini ditambahkan */
+            animation: fadeIn 0.5s ease-out; /* Efek fade in */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="message-container">
+        <h1>Halo! Selamat Datang!</h1>
+        <p>Klik di sini untuk melihat pesan spesial...</p>
+    </div>
+
+    <img id="middle-finger-image" src="https://images.pexels.com/photos/17228746/pexels-photo-17228746/free-photo-of-anak-sakit.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Pesan Kejutan">
+
+    <script>
+        // Mendapatkan elemen HTML
+        const messageContainer = document.getElementById('message-container');
+        const middleFingerImage = document.getElementById('middle-finger-image');
+        const defaultMessage = messageContainer.innerHTML; // Menyimpan pesan awal
+
+        // Menambahkan event listener untuk klik
+        messageContainer.addEventListener('click', function() {
+            // Memeriksa apakah gambar sedang ditampilkan
+            if (middleFingerImage.classList.contains('show-image')) {
+                // Jika sedang ditampilkan, sembunyikan gambar dan kembalikan pesan awal
+                middleFingerImage.classList.remove('show-image');
+                messageContainer.innerHTML = defaultMessage;
+            } else {
+                // Jika belum ditampilkan, tampilkan gambar dan ubah pesan
+                middleFingerImage.classList.add('show-image');
+                messageContainer.innerHTML = "<h1>SURPRISE! &#128072;</h1><p>Semoga harimu menyenangkan!</p>"; // Ubah pesan
+                // Anda juga bisa mengubah src gambar di sini jika ingin gambar berbeda setiap klik
+            }
+        });
+    </script>
+
+</body>
+</html>
