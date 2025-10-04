@@ -2,56 +2,59 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ucapan Interaktif</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Kejutan Tersembunyi</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #f0f3ff;
             margin: 0;
-            overflow: hidden; /* Mencegah scroll jika gambar besar */
+            padding: 20px;
+            box-sizing: border-box;
         }
         #message-container {
             text-align: center;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            cursor: pointer; /* Menandakan elemen bisa diklik */
-            transition: transform 0.2s ease-in-out;
+            padding: 30px 20px; 
+            background-color: #ffffff;
+            border-radius: 15px; 
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.3s;
+            width: 90%; 
+            max-width: 400px; 
         }
         #message-container:hover {
             transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
         }
         h1 {
-            color: #333;
-            margin-bottom: 15px;
+            color: #1a237e;
+            font-size: 1.5em; 
+            margin-bottom: 10px;
         }
         p {
-            color: #666;
-            font-size: 1.1em;
+            color: #455a64;
+            font-size: 1em;
         }
         #middle-finger-image {
-            display: none; /* Sembunyikan gambar secara default */
-            max-width: 300px; /* Batasi ukuran gambar */
-            height: auto;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+            width: 100%; 
+            max-height: 50vh; 
+            object-fit: contain;
+            margin-top: 25px;
+            border-radius: 15px;
         }
-        /* Style untuk gambar jari tengah */
         .show-image {
-            display: block !important; /* Tampilkan gambar ketika kelas ini ditambahkan */
-            animation: fadeIn 0.5s ease-out; /* Efek fade in */
+            display: block !important;
+            animation: fadeIn 0.7s ease-out; 
         }
-
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.8); }
+            from { opacity: 0; transform: scale(0.9); }
             to { opacity: 1; transform: scale(1); }
         }
     </style>
@@ -59,30 +62,33 @@
 <body>
 
     <div id="message-container">
-        <h1>Halo! Selamat Datang!</h1>
-        <p>Klik di sini untuk melihat pesan spesial...</p>
+        <h1>Pakyu! 🖕</h1> 
+        <p>Klik di sini ketika ingin melihat pakyu yang lain.</p>
     </div>
 
-    <img id="middle-finger-image" src="https://images.pexels.com/photos/17228746/pexels-photo-17228746/free-photo-of-anak-sakit.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Pesan Kejutan">
+    <img id="middle-finger-image" src="https://id.pinterest.com/pin/404268504072727456/" alt="Pesan Kejutan">
 
     <script>
-        // Mendapatkan elemen HTML
         const messageContainer = document.getElementById('message-container');
         const middleFingerImage = document.getElementById('middle-finger-image');
-        const defaultMessage = messageContainer.innerHTML; // Menyimpan pesan awal
+        
+        // Simpan pesan awal yang sudah diubah ke variabel
+        const defaultMessage = messageContainer.innerHTML; 
 
-        // Menambahkan event listener untuk klik
         messageContainer.addEventListener('click', function() {
-            // Memeriksa apakah gambar sedang ditampilkan
             if (middleFingerImage.classList.contains('show-image')) {
-                // Jika sedang ditampilkan, sembunyikan gambar dan kembalikan pesan awal
+                // KONDISI: Jika gambar sedang ditampilkan (Mengembalikan ke awal)
                 middleFingerImage.classList.remove('show-image');
                 messageContainer.innerHTML = defaultMessage;
+                messageContainer.style.backgroundColor = '#ffffff';
             } else {
-                // Jika belum ditampilkan, tampilkan gambar dan ubah pesan
+                // KONDISI: Jika gambar TIDAK ditampilkan (Menampilkan kejutan)
                 middleFingerImage.classList.add('show-image');
-                messageContainer.innerHTML = "<h1>SURPRISE! &#128072;</h1><p>Semoga harimu menyenangkan!</p>"; // Ubah pesan
-                // Anda juga bisa mengubah src gambar di sini jika ingin gambar berbeda setiap klik
+                
+                // PESAN KEJUTAN BARU (DINAMIS)
+                messageContainer.innerHTML = "<h1>MOTHERRR FATHERRR &#128077;</h1><p>Ini adalah kejutan motherrrr fatherrr! (Klik lagi untuk menyembunyikan)</p>";
+                
+                messageContainer.style.backgroundColor = '#e3f2fd'; 
             }
         });
     </script>
